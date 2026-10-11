@@ -1,0 +1,379 @@
+/* ============================================================
+   TerraLeak Tracker — theme pack (v1.6: Classic 2003 + 2013)
+   styles.css is structural foundation only (its late-2000s look
+   is fully overridden; that skin was retired as a selectable theme).
+   - "og"    = Classic OG-Steam 2003-2007, DEFAULT. Palette + VGUI rules
+               from MapleAtMorning/OldSteam-Theme css/universal.css,
+               css/library/library.css, css/webkit/store.css,
+               css/client/navbar.css; bitmap glyphs from
+               eyedine2/Classic-Steam-Library images/*.
+   - "y2013" = Steam 2013 client era. v1 palette from
+               eyedine2/Classic-Steam-Library 2013steam/vars2013.css;
+               v2 tokens + button/chrome art from allenvox/steamui-2013
+               skins/Steam2013/resource/styles/steam.styles (exact
+               "R G B A" colors below) with TGA art converted to
+               assets/img/v2013/*.png. Friends blues from
+               Vuthakral/Steam_UI-Revival friends.custom.css.
+   Upstream sources vendored under assets/vendor/ for reference.
+   ============================================================ */
+
+/* v1.5 web-ready art converted from allenvox TGAs (all <2KB each):
+   btn-def/ovr/dis.png = 30x30 9-slice composites assembled from the
+   8x 10x10 btnDef/btnOvrOff/btnDis corner+edge tiles;
+   chk-on/off = 21x21 checkbox states; scroll-v/h (+ovr) = scrollbar
+   handle glyphs; avatar-online/offline/ingame = 40x40 status frames;
+   steam-logo-2013.png = 52x32 client logo. Total 7.7KB. */
+
+/* ---------- shared skin-switcher widget (all themes) ---------- */
+.skin-switch{display:flex;align-items:center;gap:4px;margin-left:10px}
+.skin-switch .skin-label{font-size:10px;letter-spacing:1px;opacity:.8}
+.skin-btn{font-family:Tahoma;font-size:10px;font-weight:bold;padding:2px 8px;cursor:pointer;border:1px solid #14170e;background:#2c3123;color:#b9bda0}
+.skin-btn:hover{color:#fff}
+.skin-btn.active{background:#8fa065;color:#14170e}
+
+/* ============================================================
+   THEME 1 — OG STEAM 2003-2007 ("classic UI")
+   Rules: flat fills, square corners, Win95-style outset/inset
+   bevels, Maize highlights, no glows/gradients.
+   ============================================================ */
+html[data-theme="og"]{
+  --bg:#282e22;
+  --win-top:#4c5844; --win-bot:#4c5844;
+  --menu-bg:#3e4637;
+  --tab-bg:#4c5844; --tab-active:#5a6a50;
+  --content:#4c5844; --content2:#3e4637;
+  --panel:#4c5844; --panel-head:#5a6a50;
+  --ink:#d8ded3; --ink-dim:#a0aa95; --link:#c4b550; --accent:#c4b550;
+  --bevel-hi:#808080; --bevel-lo:#282e22;
+  --green:#7ea64b; --red:#e06a5a;
+}
+html[data-theme="og"] html, html[data-theme="og"] body,
+html[data-theme="og"]{background:#282e22}
+html[data-theme="og"] body{background:#282e22}
+html[data-theme="og"] .steam-window{background:#4c5844;border:1px outset #808080;border-radius:0;box-shadow:none}
+html[data-theme="og"] .titlebar{background:#4c5844;border-bottom:1px solid #282e22}
+html[data-theme="og"] .steam-piston{background:#7ea64b;border:1px outset #808080;border-radius:0;box-shadow:none}
+html[data-theme="og"] .title-text{color:#d8ded3;text-shadow:none}
+html[data-theme="og"] .tbtn{background:#4c5844;border:1px outset #808080;color:#d8ded3;border-radius:0}
+html[data-theme="og"] .tbtn:active{border-style:inset}
+html[data-theme="og"] .tbtn.close{background:#4c5844;color:#d8ded3}
+html[data-theme="og"] .menubar{background:#3e4637;color:#a0aa95;border-bottom:1px solid #282e22}
+html[data-theme="og"] .menu:hover{color:#c4b550}
+html[data-theme="og"] .main-header{background:#4c5844;border-bottom:1px solid #282e22}
+html[data-theme="og"] .steam-logo{color:#d8ded3;text-shadow:none;font-family:Tahoma,Arial;font-weight:bold;letter-spacing:1px}
+html[data-theme="og"] .logo-sub{color:#c4b550}
+html[data-theme="og"] .tabs{gap:2px}
+html[data-theme="og"] .tab{background:#4c5844;border:1px outset #808080;color:#d8ded3;border-radius:0;text-shadow:none;padding:7px 16px}
+html[data-theme="og"] .tab:hover{color:#c4b550}
+html[data-theme="og"] .tab.active{background:#3e4637;border-style:inset;color:#c4b550;text-shadow:none}
+html[data-theme="og"] .userbox{color:#d8ded3;border-left:1px solid #282e22}
+html[data-theme="og"] .userbox .small{color:#758666}
+html[data-theme="og"] .green-dot{border-radius:0;box-shadow:none;background:#7ea64b}
+html[data-theme="og"] .subbar{background:#5a6a50;color:#d8ded3;border-bottom:1px solid #282e22}
+html[data-theme="og"] .searchbox input{background:#3e4637;border:1px inset #808080;color:#d8ded3;border-radius:0}
+html[data-theme="og"] .searchbox button, html[data-theme="og"] .mini-btn, html[data-theme="og"] .steam-btn{background:#4c5844;border:1px outset #808080;color:#d8ded3;border-radius:0;text-shadow:none}
+html[data-theme="og"] .searchbox button:active, html[data-theme="og"] .steam-btn:active{border-style:inset;background:#3e4637}
+html[data-theme="og"] .ticker-wrap{background:#3e4637;color:#d8ded3;border-bottom:1px solid #282e22}
+html[data-theme="og"] .ticker-tag{border-radius:0;background:#91863c;border:1px outset #808080}
+html[data-theme="og"] .stats-strip{background:#3e4637}
+html[data-theme="og"] .stat-num{color:#d8ded3}
+html[data-theme="og"] .stat label{color:#758666}
+html[data-theme="og"] .stat.warn .stat-num{color:#c4b550}
+html[data-theme="og"] .content{background:#4c5844}
+html[data-theme="og"] .panel{background:#4c5844;border:1px outset #808080;box-shadow:none;border-radius:0}
+html[data-theme="og"] .panel.highlight{border:1px outset #c4b550}
+html[data-theme="og"] .panel-head{background:#5a6a50;color:#d8ded3;border-bottom:1px solid #282e22;text-shadow:none}
+html[data-theme="og"] .panel-foot{background:#3e4637;color:#758666}
+html[data-theme="og"] .link{color:#c4b550}
+html[data-theme="og"] code{background:#3e4637;color:#c4b550;border:1px inset #808080}
+html[data-theme="og"] .alert-box{background:#3e4637;border:1px outset #91863c;color:#d8ded3}
+html[data-theme="og"] .kv-grid div{background:#3e4637;border:1px inset #808080}
+html[data-theme="og"] .kv-grid span{color:#758666}
+html[data-theme="og"] .fake-shot-inner{background:#3e4637}
+html[data-theme="og"] .shot-tag{border-radius:0}
+html[data-theme="og"] .quote{background:#3e4637;border-left:3px solid #c4b550}
+html[data-theme="og"] .chip{background:#3e4637;border:1px outset #808080;color:#a0aa95;border-radius:0}
+html[data-theme="og"] .chip.active{background:#5a6a50;border-style:inset;color:#c4b550}
+html[data-theme="og"] .news-item{background:#3e4637;border:1px outset #808080;border-left:4px solid #c4b550}
+html[data-theme="og"] .n-cat{background:#5a6a50;border:1px outset #808080;color:#d8ded3}
+html[data-theme="og"] .n-title a{color:#d8ded3} html[data-theme="og"] .n-title a:hover{color:#c4b550}
+html[data-theme="og"] .n-ex{color:#a0aa95}
+html[data-theme="og"] .big-pct{color:#c4b550}
+html[data-theme="og"] .triage-bar, html[data-theme="og"] .bar{background:#282e22;border:1px inset #808080}
+html[data-theme="og"] .triage-fill, html[data-theme="og"] .bar div{background:#7ea64b}
+html[data-theme="og"] .mini-table td{background:#3e4637;border:1px solid #282e22}
+html[data-theme="og"] .games-layout{border:1px outset #808080}
+html[data-theme="og"] .games-sidebar{background:#3e4637;border-right:1px solid #282e22}
+html[data-theme="og"] .side-head{background:#5a6a50;color:#d8ded3}
+html[data-theme="og"] .side-search input{background:#4c5844;border:1px inset #808080;color:#d8ded3}
+html[data-theme="og"] .game-row:nth-child(odd){background:#4c5844} html[data-theme="og"] .game-row:nth-child(even){background:#3e4637}
+html[data-theme="og"] .game-row:hover{background:#5a6a50}
+html[data-theme="og"] .game-row.active{background:#5a6a50;border:1px inset #808080;color:#c4b550}
+html[data-theme="og"] .g-icon{background:#7ea64b;border:1px outset #808080;border-radius:0}
+html[data-theme="og"] .games-detail{background:#3e4637}
+html[data-theme="og"] .detail-head{background:#4c5844;border-bottom:1px solid #282e22}
+html[data-theme="og"] .detail-title{color:#d8ded3} html[data-theme="og"] .detail-sub{color:#c4b550}
+html[data-theme="og"] .detail-statusbar{background:#282e22;color:#a0aa95}
+html[data-theme="og"] .build-row{background:#4c5844;border:1px outset #808080}
+html[data-theme="og"] .build-row .b-date{color:#c4b550}
+html[data-theme="og"] .depot-table th{background:#5a6a50;color:#d8ded3}
+html[data-theme="og"] .depot-table td{color:#a0aa95}
+html[data-theme="og"] .depot-table tr:nth-child(odd) td{background:#4c5844} html[data-theme="og"] .depot-table tr:nth-child(even) td{background:#3e4637}
+html[data-theme="og"] .pill{border-radius:0}
+html[data-theme="og"] .pill.ok{background:#7ea64b} html[data-theme="og"] .pill.mid{background:#91863c;color:#fff}
+html[data-theme="og"] .tl-item{background:#3e4637;border:1px outset #808080}
+html[data-theme="og"] .tl-item::before{border-radius:0;background:#c4b550}
+html[data-theme="og"] .tl-item.major::before{background:#a32f22}
+html[data-theme="og"] .tl-date{color:#c4b550}
+html[data-theme="og"] .tl-desc{color:#a0aa95}
+html[data-theme="og"] .statusbar{background:#3e4637;color:#a0aa95;border-top:1px solid #282e22}
+html[data-theme="og"] .modal-box{background:#4c5844;border:1px outset #808080}
+html[data-theme="og"] .modal-head{background:#5a6a50;color:#d8ded3}
+html[data-theme="og"] .skin-btn{background:#3e4637;border:1px outset #808080;color:#a0aa95;border-radius:0}
+html[data-theme="og"] .skin-btn.active{background:#5a6a50;border-style:inset;color:#c4b550}
+/* square scrollbars, OG style */
+html[data-theme="og"] ::-webkit-scrollbar{width:14px;height:14px;background:#3e4637}
+html[data-theme="og"] ::-webkit-scrollbar-thumb{background:#5a6a50;border:1px outset #808080}
+html[data-theme="og"] ::-webkit-scrollbar-button{background:#4c5844;border:1px outset #808080}
+
+/* ============================================================
+   THEME 1 v2 — exact OldSteam-Theme tokens + converted bitmap art
+   Every value below is a direct port of
+   MapleAtMorning/OldSteam-Theme css/universal.css
+   (LightGreenBG 5a6a50, GreenBG 4c5844, DarkGreenBG 3e4637,
+   BorderBright 808080, BorderDark 282e22, OffWhite d8ded3,
+   Maize c4b550, MaizeBG 91863c, Label a0aa95,
+   DimListText 758666, DisabledText1 75806f, FullGreen 7ea64b)
+   plus nav-button rules from css/client/navbar.css
+   (outset idle, inset + maize when active, 12px, square).
+   Bitmap art: eyedine2/Classic-Steam-Library images/* gems
+   (play, search, checkbox, scrollbar arrows, logo) copied to
+   assets/img/v2003/ — the only repo of the four holding
+   period-style VGUI glyphs.
+   ============================================================ */
+html[data-theme="og"]{
+  --og-light:#5a6a50; --og-green:#4c5844; --og-dark:#3e4637;
+  --og-borderhi:#808080; --og-borderlo:#282e22;
+  --og-offwhite:#d8ded3; --og-maize:#c4b550; --og-maizebg:#91863c;
+  --og-label:#a0aa95; --og-dimlist:#758666; --og-distext:#75806f;
+  --og-fullgreen:#7ea64b;
+}
+/* 2003 header logo (classic-lib logo.svg, 320x128 shown at 30px) */
+.logo2003{display:none}
+html[data-theme="og"] .logo-block{display:flex;align-items:center;gap:8px}
+html[data-theme="og"] .logo2003{display:inline-block;height:30px;width:auto}
+/* play-glyph game icons (classic-lib play.png 20x20) */
+html[data-theme="og"] .g-icon{
+  width:20px;height:20px;border-radius:0;
+  background:#3e4637 url("assets/img/v2003/play.png") no-repeat center;
+  background-size:14px 14px;border:1px outset #808080;
+}
+html[data-theme="og"] .game-row.active .g-icon{background-color:#5a6a50;border-style:inset}
+/* search fields with magnifier glyph (search_input.png 18x18) */
+html[data-theme="og"] .searchbox input,
+html[data-theme="og"] .side-search input,
+html[data-theme="og"] .panel-head input{
+  background:#3e4637 url("assets/img/v2003/search_input.png") no-repeat 4px center;
+  padding-left:26px;color:#d8ded3;
+}
+/* arrow-button scrollbars (webkit_scrollbar_up/down + thumb tiles) */
+html[data-theme="og"] ::-webkit-scrollbar-button:vertical:decrement{
+  background:#4c5844 url("assets/img/v2003/webkit_scrollbar_up.png") no-repeat center;
+  border:1px outset #808080;
+}
+html[data-theme="og"] ::-webkit-scrollbar-button:vertical:decrement:hover{
+  background-image:url("assets/img/v2003/webkit_scrollbar_up_hover.png");
+}
+html[data-theme="og"] ::-webkit-scrollbar-button:vertical:increment{
+  background:#4c5844 url("assets/img/v2003/webkit_scrollbar_down.png") no-repeat center;
+  border:1px outset #808080;
+}
+html[data-theme="og"] ::-webkit-scrollbar-button:vertical:increment:hover{
+  background-image:url("assets/img/v2003/webkit_scrollbar_down_hover.png");
+}
+html[data-theme="og"] ::-webkit-scrollbar-thumb{
+  background:#4c5844 url("assets/img/v2003/webkit_scrollbar_thumb.png") no-repeat center;
+  border:1px outset #808080;
+}
+/* VGUI checkbox bullets for findings checklists (checkbox_active.png 15px) */
+html[data-theme="og"] ul.find-list{list-style:none;padding-left:28px}
+html[data-theme="og"] ul.find-list li{
+  background:url("assets/img/v2003/checkbox_active.png") no-repeat 0 2px;
+  padding-left:22px;min-height:18px;margin-bottom:2px;
+}
+/* clock glyph by the menubar clock (clock01.png 20px) */
+html[data-theme="og"] #clock{
+  background:url("assets/img/v2003/clock01.png") no-repeat left center;
+  background-size:14px 14px;padding-left:19px;
+}
+
+/* ============================================================
+   THEME 2 — STEAM 2013 LIBRARY ERA (from Classic-Steam-Library)
+   Dark warm greys, green+blue accents, 3px radius, flat bars.
+   ============================================================ */
+html[data-theme="y2013"]{
+  --bg:#171614;
+  --win-top:#4a4846; --win-bot:#383635;
+  --menu-bg:#242322;
+  --tab-bg:#383635; --tab-active:#7ea64b;
+  --content:#201f1d; --content2:#242322;
+  --panel:#383635; --panel-head:#4a4846;
+  --ink:#d1cfcd; --ink-dim:#a6a4a1; --link:#597eb3; --accent:#7ea64b;
+  --bevel-hi:#706d69; --bevel-lo:#000;
+  --green:#8cb359; --red:#ad4547;
+}
+html[data-theme="y2013"] body{background:#171614}
+html[data-theme="y2013"] .steam-window{background:#242322;border:1px solid #000;border-radius:3px;box-shadow:0 20px 60px rgba(0,0,0,.8)}
+html[data-theme="y2013"] .titlebar{background:linear-gradient(#4a4846,#383635)}
+html[data-theme="y2013"] .steam-piston{background:radial-gradient(circle at 35% 30%, #8cb359, #5C7E10 60%, #242322);border-radius:3px}
+html[data-theme="y2013"] .title-text{color:#f2f2f2}
+html[data-theme="y2013"] .tbtn{background:linear-gradient(#696663,#4a4846);color:#e5e2df;border-radius:3px;border:1px solid #000}
+html[data-theme="y2013"] .menubar{background:#242322;color:#a6a4a1}
+html[data-theme="y2013"] .menu:hover{color:#e5e2df}
+html[data-theme="y2013"] .main-header{background:#242322;border-bottom:2px solid #5C7E10}
+html[data-theme="y2013"] .steam-logo{color:#f2f2f2;text-shadow:none;font-family:"Arial Narrow",Arial;font-weight:bold}
+html[data-theme="y2013"] .logo-sub{color:#7ea64b}
+html[data-theme="y2013"] .tab{background:#383635;color:#a6a4a1;border:1px solid #000;border-radius:3px 3px 0 0;text-shadow:none}
+html[data-theme="y2013"] .tab.active{background:#4a4846;color:#8cb359;border-bottom:2px solid #5C7E10}
+html[data-theme="y2013"] .userbox{color:#d1cfcd} html[data-theme="y2013"] .userbox .small{color:#736f6c}
+html[data-theme="y2013"] .subbar{background:#383635;color:#d1cfcd;border-bottom:1px solid #000}
+html[data-theme="y2013"] .searchbox input{background:#171614;border:1px solid #524f4d;color:#d1cfcd;border-radius:3px}
+html[data-theme="y2013"] .searchbox button, html[data-theme="y2013"] .mini-btn, html[data-theme="y2013"] .steam-btn{background:linear-gradient(#5c5956,#4a4846);border:1px solid #524f4d;color:#e5e2df;border-radius:3px;text-shadow:none}
+html[data-theme="y2013"] .ticker-wrap{background:#201f1d;color:#a6a4a1}
+html[data-theme="y2013"] .stats-strip{background:#242322}
+html[data-theme="y2013"] .stat-num{color:#f2f2f2} html[data-theme="y2013"] .stat label{color:#736f6c}
+html[data-theme="y2013"] .stat.warn .stat-num{color:#8cb359}
+html[data-theme="y2013"] .content{background:#201f1d}
+html[data-theme="y2013"] .panel{background:#2b2a28;border:1px solid #000;border-radius:3px;box-shadow:none}
+html[data-theme="y2013"] .panel.highlight{border-color:#5C7E10}
+html[data-theme="y2013"] .panel-head{background:linear-gradient(#524f4d,#383635);color:#e5e2df;border-radius:3px 3px 0 0}
+html[data-theme="y2013"] .panel-foot{background:#242322;color:#736f6c}
+html[data-theme="y2013"] .link{color:#86b5d9}
+html[data-theme="y2013"] code{background:#171614;color:#8cb359;border-color:#000}
+html[data-theme="y2013"] .alert-box{background:#242322;border:1px solid #706d69;color:#d1cfcd}
+html[data-theme="y2013"] .kv-grid div{background:#242322;border:1px solid #000;border-radius:3px}
+html[data-theme="y2013"] .kv-grid span{color:#736f6c}
+html[data-theme="y2013"] .quote{background:#242322;border-left:3px solid #5C7E10}
+html[data-theme="y2013"] .chip{background:#242322;border:1px solid #524f4d;color:#a6a4a1;border-radius:3px}
+html[data-theme="y2013"] .chip.active{background:#5C7E10;border-color:#5C7E10;color:#fff}
+html[data-theme="y2013"] .news-item{background:#242322;border:1px solid #000;border-left:4px solid #5C7E10;border-radius:3px}
+html[data-theme="y2013"] .n-cat{background:#4a4846;color:#e5e2df}
+html[data-theme="y2013"] .n-ex{color:#a6a4a1}
+html[data-theme="y2013"] .big-pct{color:#8cb359}
+html[data-theme="y2013"] .triage-fill, html[data-theme="y2013"] .bar div{background:linear-gradient(#8cb359,#5C7E10)}
+html[data-theme="y2013"] .mini-table td{background:#242322;border-color:#000}
+html[data-theme="y2013"] .games-sidebar{background:#242322}
+html[data-theme="y2013"] .side-head{background:#383635;color:#e5e2df}
+html[data-theme="y2013"] .side-search input{background:#171614;border-color:#524f4d;color:#d1cfcd}
+html[data-theme="y2013"] .game-row:nth-child(odd){background:#2b2a28} html[data-theme="y2013"] .game-row:nth-child(even){background:#242322}
+html[data-theme="y2013"] .game-row{color:#a6a4a1} html[data-theme="y2013"] .game-row:hover{background:#383635}
+html[data-theme="y2013"] .game-row.active{background:#4a4846;color:#8cb359}
+html[data-theme="y2013"] .g-icon{background:#5C7E10;border-radius:3px}
+html[data-theme="y2013"] .games-detail{background:#242322}
+html[data-theme="y2013"] .detail-head{background:#242322}
+html[data-theme="y2013"] .detail-title{color:#f2f2f2} html[data-theme="y2013"] .detail-sub{color:#8cb359}
+html[data-theme="y2013"] .detail-statusbar{background:#171614;color:#a6a4a1}
+html[data-theme="y2013"] .build-row{background:#2b2a28;border:1px solid #000;border-radius:3px}
+html[data-theme="y2013"] .build-row .b-date{color:#8cb359}
+html[data-theme="y2013"] .depot-table th{background:#383635;color:#e5e2df}
+html[data-theme="y2013"] .depot-table td{color:#a6a4a1;border-color:#000}
+html[data-theme="y2013"] .depot-table tr:nth-child(odd) td{background:#2b2a28} html[data-theme="y2013"] .depot-table tr:nth-child(even) td{background:#242322}
+html[data-theme="y2013"] .tl-item{background:#242322;border:1px solid #000;border-radius:3px}
+html[data-theme="y2013"] .tl-item::before{background:#8cb359}
+html[data-theme="y2013"] .tl-date{color:#8cb359} html[data-theme="y2013"] .tl-desc{color:#a6a4a1}
+html[data-theme="y2013"] .statusbar{background:#242322;color:#a6a4a1}
+html[data-theme="y2013"] .modal-box{background:#2b2a28;border:1px solid #000}
+html[data-theme="y2013"] .modal-head{background:#383635;color:#e5e2df}
+html[data-theme="y2013"] .skin-btn{background:#383635;border:1px solid #000;color:#a6a4a1;border-radius:3px}
+html[data-theme="y2013"] .skin-btn.active{background:#5C7E10;border-color:#5C7E10;color:#fff}
+html[data-theme="y2013"] ::-webkit-scrollbar{width:12px;background:#242322}
+html[data-theme="y2013"] ::-webkit-scrollbar-thumb{background:#4a4846;border-radius:3.5px}
+
+/* ============================================================
+   THEME 2 v2 — exact steam.styles tokens + converted TGA chrome
+   Every color below is a direct port of allenvox/steamui-2013
+   skins/Steam2013/resource/styles/steam.styles "colors" block
+   ("R G B A" -> hex). Friends blues from Vuthakral/Steam_UI-Revival.
+   ============================================================ */
+html[data-theme="y2013"]{
+  /* exact ports: Text 209 207 205, TextDisabled 102 99 96,
+     ButtonFace 105 102 99, ButtonFace2 92 89 86,
+     ButtonBorder 112 109 105, ButtonBorderFocus 153 147 141,
+     Focus 49 66 89, Focus2 85 121 171, Focus4 67 158 191,
+     TextSelectedBG 64 90 128, MaizeBG 145 134 60,
+     GameDetailsBlue 89 126 179, GameDetailsRed 173 69 71,
+     ScrollBG 77 74 72, ScrollGlyph 204 198 192,
+     MenuBG1 92 89 86 / MenuBG2 61 59 58,
+     DialogBorder 119 117 115, Divider 107 104 101,
+     basefont Arial */
+  --v13-textdis:#666360; --v13-btnface:#696663; --v13-btnface2:#5c5956;
+  --v13-btnborder:#706d69; --v13-btnborderf:#99938d;
+  --v13-focus:#314259; --v13-focus2:#5579ab; --v13-focus4:#439ebf;
+  --v13-selbg:#405a80; --v13-maizebg:#91863c;
+  --v13-blue:#597eb3; --v13-red:#ad4547;
+  --v13-scrollbg:#4d4a48; --v13-glyph:#ccc6c0;
+  --v13-menugrad:linear-gradient(#5c5956,#3d3b3a);
+  --v13-dlgborder:#777573;
+}
+/* Arial basefont per steam.styles */
+html[data-theme="y2013"] body{font-family:Arial,Helvetica,Tahoma,Verdana,sans-serif}
+/* authentic 9-slice VGUI buttons (converted btnDef/btnOvrOff/btnDis tiles) */
+html[data-theme="y2013"] .steam-btn,
+html[data-theme="y2013"] .mini-btn,
+html[data-theme="y2013"] .searchbox button,
+html[data-theme="y2013"] .skin-btn{
+  border:5px solid transparent;
+  border-image:url("assets/img/v2013/btn-def.png") 10 stretch;
+  background-color:#5c5956;color:#e5e2df;border-radius:0;text-shadow:none;
+  background-clip:padding-box;
+}
+html[data-theme="y2013"] .steam-btn:hover,
+html[data-theme="y2013"] .mini-btn:hover,
+html[data-theme="y2013"] .searchbox button:hover,
+html[data-theme="y2013"] .skin-btn:hover{
+  border-image-source:url("assets/img/v2013/btn-ovr.png");color:#fff;
+}
+html[data-theme="y2013"] .steam-btn:active,
+html[data-theme="y2013"] .mini-btn:active,
+html[data-theme="y2013"] .searchbox button:active{border-image-source:url("assets/img/v2013/btn-ovr.png")}
+html[data-theme="y2013"] .skin-btn.active{
+  border-image-source:url("assets/img/v2013/btn-ovr.png");color:#fff;
+}
+html[data-theme="y2013"] .steam-btn:disabled,
+html[data-theme="y2013"] .mini-btn:disabled{
+  border-image-source:url("assets/img/v2013/btn-dis.png");color:#666360;
+}
+/* menu gradient + dialog border per steam.styles MenuBG1/2, DialogBorder */
+html[data-theme="y2013"] .menubar{background:linear-gradient(#5c5956,#3d3b3a)}
+html[data-theme="y2013"] .modal-box{border:1px solid #777573}
+html[data-theme="y2013"] .panel{border-color:#000}
+/* Focus4 cyan progress bars (authentic download-bar color) */
+html[data-theme="y2013"] .triage-fill,
+html[data-theme="y2013"] .bar div{background:linear-gradient(#439ebf,#314259)}
+/* TextSelectedBG selection */
+html[data-theme="y2013"] ::selection{background:#405a80;color:#f2efeb}
+/* scrollbar gutter + glyph handle (ScrollBG / ScrollGlyph) */
+html[data-theme="y2013"] ::-webkit-scrollbar{background:#4d4a48}
+html[data-theme="y2013"] ::-webkit-scrollbar-thumb{
+  background-color:#5c5956;background-image:url("assets/img/v2013/scroll-v.png");
+  background-repeat:no-repeat;background-position:center;border:1px solid #000;border-radius:0;
+}
+html[data-theme="y2013"] ::-webkit-scrollbar-thumb:hover{background-image:url("assets/img/v2013/scroll-v-ovr.png")}
+/* VGUI checkbox bullets for findings checklists (21px chk states) */
+html[data-theme="y2013"] ul.find-list{list-style:none;padding-left:30px}
+html[data-theme="y2013"] ul.find-list li{
+  background:url("assets/img/v2013/chk-on.png") no-repeat 0 1px;
+  padding-left:26px;min-height:22px;margin-bottom:2px;
+}
+/* 2013 client logo + friends avatar frame (avatar-online.png, 40x40) */
+.logo2013{display:none}
+html[data-theme="y2013"] .logo2013{display:inline-block;vertical-align:middle;margin-right:8px}
+.friend-avatar{display:none}
+html[data-theme="y2013"] .friend-avatar{
+  display:inline-block;width:40px;height:40px;vertical-align:middle;margin-right:8px;
+  background:#242322 url("assets/img/v2013/avatar-online.png") no-repeat center;
+  color:#8cb359;font:bold 14px Arial;text-align:center;line-height:40px;
+}
+/* friends-status colors from Vuthakral/Steam_UI-Revival */
+html[data-theme="y2013"] .userbox .small{color:#53a4c4}
+html[data-theme="y2013"] .green-dot{background:#8cb93b;box-shadow:0 0 4px #8cb93b;border-radius:0}

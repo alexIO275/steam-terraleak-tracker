@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="og">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steam - TerraLeak Tracker</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="themes.css">
+<link rel="icon" href="assets/img/v2003/logo.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="desktop">
+  <!-- Fake OS top hint -->
+  <div class="os-hint">terraleak-tracker v1.8 — auto-syncs Hidden Palace wiki on open — sources: Ars Technica / HiddenPalace / steam2-db / Gabe Follower / Scolcer — skins: Classic 2003 (default) + 2013</div>
+
+  <!-- STEAM WINDOW -->
+  <div class="steam-window" id="steamWindow">
+    <!-- Titlebar -->
+    <div class="titlebar" id="titlebar">
+      <div class="title-left">
+        <div class="steam-piston" title="Steam 2003"></div>
+        <span class="title-text"><b>Steam</b> — TerraLeak Tracker</span>
+      </div>
+      <div class="title-btns">
+        <button class="tbtn" id="btnMin" title="Minimize">_</button>
+        <button class="tbtn" id="btnMax" title="Maximize">□</button>
+        <button class="tbtn close" id="btnClose" title="Close">✕</button>
+      </div>
+    </div>
+
+    <!-- Menubar -->
+    <div class="menubar">
+      <span class="menu">Steam</span><span class="menu">View</span><span class="menu">Games</span><span class="menu">Tools</span><span class="menu">Servers</span><span class="menu">Help</span>
+      <span class="skin-switch" title="Skins adapted from MapleAtMorning/OldSteam-Theme (OG) + eyedine2/Classic-Steam-Library (2013)">
+        <span class="skin-label">SKIN:</span>
+        <button class="skin-btn active" data-skin="og" title="Classic 2003-07 OG-Steam VGUI — flat greens, maize, outset bevels (OldSteam-Theme)">Classic 2003</button>
+        <button class="skin-btn" data-skin="y2013" title="Steam 2013 client era — dark warm greys + 9-slice buttons (allenvox/steamui-2013)">2013</button>
+      </span>
+      <span class="menu-right" id="clock">—</span>
+    </div>
+
+    <!-- Big header with logo + tabs -->
+    <div class="main-header">
+      <div class="logo-block">
+        <img class="logo2003" src="assets/img/v2003/logo.svg" alt="Classic Steam logo (eyedine2/Classic-Steam-Library)" height="30">
+        <img class="logo2013" src="assets/img/v2013/steam-logo-2013.png" alt="Steam 2013 logo (allenvox/steamui-2013)" width="52" height="32">
+        <div class="steam-logo">STEAM<span class="reg">®</span></div>
+        <div class="logo-sub">TERRALEAK EDITION</div>
+      </div>
+      <nav class="tabs" id="tabs">
+        <button class="tab" data-tab="store">STORE</button>
+        <button class="tab active" data-tab="news">NEWS</button>
+        <button class="tab" data-tab="games">GAMES</button>
+        <button class="tab" data-tab="tools">FILES</button>
+        <button class="tab" data-tab="servers">TIMELINE</button>
+        <button class="tab" data-tab="media">FORENSICS</button>
+      </nav>
+      <div class="userbox">
+        <span class="friend-avatar" title="Online — avatar frame from allenvox/steamui-2013">DH</span><span class="green-dot"></span> data_hoarder_2003<br>
+        <span class="small">0 friends online</span>
+      </div>
+    </div>
+
+    <!-- Green sub-toolbar -->
+    <div class="subbar">
+      <span class="subbar-label" id="subbarLabel">NEWS &nbsp;›&nbsp; Steam2 Content Server Dump</span>
+      <div class="searchbox">
+        <input id="globalSearch" type="text" placeholder="search depots, games, headlines..." autocomplete="off">
+        <button id="searchBtn">Search</button>
+      </div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="ticker-wrap">
+      <span class="ticker-tag">WIRE</span>
+      <span class="live-badge" id="liveBadge" title="Auto-syncs Hidden Palace wiki on open + every 5 min">● CONNECTING</span>
+      <div class="ticker"><div class="ticker-inner" id="tickerInner"></div></div>
+      <button class="mini-btn" id="updateBtn">Check for Updates</button>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+      <div class="stat"><span class="stat-num" data-count="12">12</span><span class="stat-unit">TB</span><label>ARCHIVE SIZE</label></div>
+      <div class="stat"><span class="stat-num">2003–2013</span><label>STEAM2 ERA COVERAGE</label></div>
+      <div class="stat"><span class="stat-num" id="statDepots">~4,500+</span><label>DEPOTS IN TORRENT</label></div>
+      <div class="stat"><span class="stat-num" id="statProtos">132</span><label>PROTOS CATALOGED*</label></div>
+      <div class="stat warn"><span class="stat-num">NO HACK</span><label>PUBLIC ENDPOINT — VALVE'S FAULT</label></div>
+      <div class="stat danger"><span class="stat-num">● SILENT</span><label>VALVE STATEMENT: NONE</label></div>
+    </div>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <!-- STORE / OVERVIEW -->
+      <section class="page" id="page-store">
+        <div class="cols">
+          <div class="left-col">
+            <div class="panel">
+              <div class="panel-head">WHAT IS THE TERRALEAK?</div>
+              <div class="panel-body">
+                <p><b>Steam2 TerraLeak</b> — a <b>12–13 TB “as-complete-as-possible content server dump”</b> of Valve's defunct <b>Steam2</b> infrastructure (Sep 2003 → Feb 2013) circulating via BitTorrent since <b>Aug 29, 2026</b>.</p>
+                <p>It holds <b>every version of every game</b> uploaded to old Steam2 servers: public builds <i>plus</i> pre-release, prototype &amp; playtest depots from Valve <i>and</i> third-party publishers. File names look like <code>[depot_id]_[version]_[crc]_[hash]</code> — DATs + blobs.</p>
+                <div class="alert-box">
+                  <b>⚠ HOT FILES:</b> contains massive 3rd-party content. Tyler McVicker: <i>“Don't touch it, it's HOT.”</i> Preservation only — no download links hosted here. <br>
+                  Readme in torrent: <i>“warm n good wishes to all hoarders who had stuff from this collection &lt;3 — mirror &amp; share as widely as possible”</i>
+                </div>
+                <div class="kv-grid">
+                  <div><span>Origin</span><b>Public API endpoint, no password. “Hidden in plain sight.”</b></div>
+                  <div><span>Verified by</span><b>Gabe Follower, Scolcer (Aug 29)</b></div>
+                  <div><span>Cut-off reason</span><b>SteamPipe migration, Mar 2013</b></div>
+                  <div><span>Distribution</span><b>BitTorrent tracker — unpurgeable</b></div>
+                  <div><span>Uploader claim</span><b>22 TB server log, “significant effort”</b></div>
+                  <div><span>Valve reply</span><b class="red">None (as of Oct 11, 2026)</b></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">CATEGORIZED PROGRESSION — LIVE FROM SCRAPE</div>
+              <div class="panel-body" id="progressList"></div>
+              <div class="panel-foot">* cataloged = prototypes with HiddenPalace / steam2-db pages. Overall archive triage ≈ <b id="overallPct">4–6%</b> — 12 TB takes weeks. <span class="link" data-goto="games">Open full tracker ›</span></div>
+            </div>
+          </div>
+          <div class="right-col">
+            <div class="panel highlight">
+              <div class="panel-head">FEATURED FIND — PORTAL 2 COREHUB BETA</div>
+              <div class="panel-body">
+                <div class="fake-shot">
+                  <div class="fake-shot-inner">
+                    <span class="shot-tag">JUL 28 2009 — PLAYABLE</span>
+                    <div class="shot-title">corehub beta</div>
+                    <div class="shot-sub">TF2 placeholders · circular portals · adhesive gel</div>
+                  </div>
+                </div>
+                <ul class="find-list">
+                  <li><b>Adhesive gel:</b> coat wall &amp; walk up it (not portal-on-gel)</li>
+                  <li><b>Slow-mo gun + Paint Gun</b> — model = HL2:Ep3 <b>Weaponizer</b></li>
+                  <li><b>Cave Johnson cube:</b> “My life is torture, please kill me”</li>
+                  <li><b>New GLaDOS dialogue</b> + F-Stop camera assets</li>
+                </ul>
+                <button class="steam-btn" data-goto="games" data-select="Portal 2">Inspect depots ›</button>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">HOW THE LEAK HAPPENED</div>
+              <div class="panel-body small">
+                <ol class="how">
+                  <li><b>2003–2013:</b> games packaged in proprietary Steam2 format.</li>
+                  <li><b>Mar 2013:</b> Valve moves to SteamPipe (HTTP file trees). Old servers left reachable.</li>
+                  <li><b>Pre-2026:</b> hoarders quietly pull depots via open endpoint.</li>
+                  <li><b>Aug 29 2026:</b> someone bundles ~12 TB + torrent + readme. VCC Discord confirms upload log.</li>
+                  <li><b>Now:</b> GitHub catalogs, <code>steam2-db.pages.dev</code>, HiddenPalace pages. Valve silent.</li>
+                </ol>
+                <p class="quote">“No hacking involved, just verified that everything in Steam2 Teraleak was obtained via a publicly accessible endpoint. It's Valve's fault…” — <b>Gabe Follower</b></p>
+                <p class="quote">“There has been no hacking. This is 100% VALVe's fault.” — <b>Scolcer</b></p>
+                <p class="quote">“Every good idea we had went into the final thing we shipped…” — <b>Elan Ruskin (ex-Valve)</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section class="page active" id="page-news">
+        <div class="cols">
+          <div class="left-col wide">
+            <div class="panel">
+              <div class="panel-head">LATEST NEWS — SCRAPED &amp; RANKED <span class="head-right">last scrape: <b id="scrapeTime">Oct 11 2026 12:00 UTC</b> <button class="mini-btn" id="rescrapeBtn">↻ re-scrape</button></span></div>
+              <div class="panel-body">
+                <div class="news-filters">
+                  <button class="chip active" data-filter="all">All</button>
+                  <button class="chip" data-filter="find">Findings</button>
+                  <button class="chip" data-filter="leak">Leak mechanics</button>
+                  <button class="chip" data-filter="press">Press</button>
+                  <button class="chip" data-filter="community">Community</button>
+                </div>
+                <div id="newsList" class="news-list"></div>
+              </div>
+            </div>
+          </div>
+          <div class="right-col narrow">
+            <div class="panel">
+              <div class="panel-head">LIVE — WIKI ACTIVITY</div>
+              <div class="panel-body small"><div id="liveFeed"><div class="live-row">Syncing Hidden Palace…</div></div></div>
+              <div class="panel-foot">auto-sync on open + every 5 min · MediaWiki API</div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">TRIAGE METER</div>
+              <div class="panel-body">
+                <div class="big-pct"><span id="triagePct">5.1</span>%</div>
+                <div class="triage-bar"><div class="triage-fill" id="triageFill"></div></div>
+                <p class="small">Estimated share of 12 TB meaningfully documented. 12 TB ≈ 4,500+ depots. HiddenPalace has paged ~132 protos. Full pass = weeks/months.</p>
+                <table class="mini-table">
+                  <tr><td>Torrent health</td><td class="green">● WELL SEEDED</td></tr>
+                  <tr><td>Mirrors</td><td>multiplying</td></tr>
+                  <tr><td>Valve DMCA</td><td class="green">none observed</td></tr>
+                  <tr><td>HL3 confirmed?</td><td class="red"><b>NO — Weaponizer only</b></td></tr>
+                </table>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">KEY VOICES</div>
+              <div class="panel-body small">
+                <p><b>Gabe Follower</b> — verification + Portal/L4D/CS:GO threads</p>
+                <p><b>Scolcer</b> — ES coverage, cut Portal 2 gels footage</p>
+                <p><b>VCC Discord</b> (One Epicplayer, CrazyBubba) — hoarder history</p>
+                <p><b>HiddenPalace</b> — preservation catalog</p>
+                <p><b>steam2-db.pages.dev</b> — depot browser</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GAMES -->
+      <section class="page" id="page-games">
+        <div class="games-layout">
+          <div class="games-sidebar">
+            <div class="side-head">MY GAMES <span id="gameCount"></span></div>
+            <div class="side-search"><input id="gameSearch" placeholder="filter..."></div>
+            <div id="gameList" class="game-list"></div>
+            <div class="side-foot">ALL GAMES — offline mode</div>
+          </div>
+          <div class="games-detail">
+            <div class="detail-head">
+              <div>
+                <div class="detail-title" id="dTitle">Portal 2</div>
+                <div class="detail-sub" id="dSub"></div>
+              </div>
+              <div class="detail-actions">
+                <button class="steam-btn small" id="prevGame">‹ Prev</button>
+                <button class="steam-btn small" id="nextGame">Next ›</button>
+              </div>
+            </div>
+            <div class="detail-statusbar" id="dStatus"></div>
+            <div class="detail-grid">
+              <div>
+                <div class="bar-row"><span>Cataloged</span><div class="bar"><div id="dBar"></div></div><b id="dPct"></b></div>
+                <p id="dDesc" class="small"></p>
+                <div class="panel-head tight">CONFIRMED DEPOTS / BUILDS</div>
+                <div id="dBuilds" class="builds"></div>
+              </div>
+              <div>
+                <div class="panel-head tight">FINDINGS LOG</div>
+                <ul id="dFindings" class="find-list"></ul>
+                <div class="panel-head tight">SOURCES</div>
+                <div id="dSources" class="small"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FILES -->
+      <section class="page" id="page-tools">
+        <div class="panel">
+          <div class="panel-head">FILES — DEPOT BROWSER (SCRAPED SAMPLE: 58 / ~4,500+) <span class="head-right"><input id="fileSearch" placeholder="filter table..."></span></div>
+          <div class="panel-body no-pad">
+            <div class="table-wrap"><table class="depot-table" id="depotTable">
+              <thead><tr><th>Game / Prototype</th><th>Build date</th><th>Depot note</th><th>Status</th><th>First seen</th></tr></thead>
+              <tbody id="depotBody"></tbody>
+            </table></div>
+          </div>
+          <div class="panel-foot">Full browser: <code>steam2-db.pages.dev</code> · preservation index: <code>hiddenpalace.org/wiki/Steam2_Content_Server</code> · filename pattern <code>[depot]_[ver]_[crc]_[hash]</code> (DAT + blob). No links hosted here.</div>
+        </div>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="page" id="page-servers">
+        <div class="panel">
+          <div class="panel-head">TIMELINE — SERVERS › STEAM2 › TERRALEAK</div>
+          <div class="panel-body"><div id="timeline" class="timeline"></div></div>
+        </div>
+      </section>
+
+      <!-- FORENSICS -->
+      <section class="page" id="page-media">
+        <div class="cols">
+          <div class="left-col">
+            <div class="panel">
+              <div class="panel-head">FORENSICS — WHAT WE VERIFIED WHILE SCRAPING</div>
+              <div class="panel-body small">
+                <h4>1. Size claims</h4>
+                <p>12 TB is the consensus (Ars, TechSpot, IGN, Verge, Engadget). Tom's Hardware / TechPowerUp note <b>12–13 TB</b> once dupes counted. Uploader screenshot showed a <b>22 TB server log</b> (likely raw + staging). We display <b>12 TB</b> as canonical.</p>
+                <h4>2. “Hack” vs endpoint</h4>
+                <p>Gabe Follower + Scolcer + Ars all agree: <b>public endpoint, no auth</b>. Whether pulled recently or hoarded pre-2013 and bundled now is still disputed (VCC mods lean “old private collection, now public”).</p>
+                <h4>3. What's NOT in it</h4>
+                <p>Nothing post-Feb 2013. <b>No playable HL3 / Ep3.</b> Only Weaponizer model (already seen in Valve's Ep3 documentary) + “ep3” strings. No post-2013 ValveTestApp depots — many destroyed/renamed.</p>
+                <h4>4. Third-party blast radius</h4>
+                <p>Because Steam2 stored <i>every publisher's</i> uploads, leak includes Spore, Dragon Age: Origins, Arkham Asylum, GTA3-era builds, Mafia II, Civ V, Sonic 4, Saw (PC builds never released). That's why lawyers care more than gamers.</p>
+                <h4>5. Scrape method for this site</h4>
+                <p>Live web search (Aug 29 → Oct 11 2026 press) + fetch of Ars Technica canonical + fetch of HiddenPalace <code>Steam2_Content_Server</code> category (≈132 rows parsed) + steam2-db probe. Normalized into <code>tracker.js</code> DB below. Re-scrape button re-runs local triage calc + timestamp.</p>
+              </div>
+            </div>
+          </div>
+          <div class="right-col">
+            <div class="panel">
+              <div class="panel-head">SCALE VISUALIZED</div>
+              <div class="panel-body">
+                <div class="scale-row"><span>12 TB text</span><div class="bar"><div style="width:100%"></div></div><b>~6B pages</b></div>
+                <div class="scale-row"><span>Nintendo Gigaleak '20</span><div class="bar"><div style="width:17%"></div></div><b>~2 TB</b></div>
+                <div class="scale-row"><span>HL2 source '03</span><div class="bar"><div style="width:1%"></div></div><b>~0.5 GB</b></div>
+                <p class="small">Teraleak ≈ <b>6× Gigaleak</b>. At 100 Mbps, 12 TB = <b>~11 days</b> nonstop. Hence “teraleak will take days/weeks to comb” (GamesRadar+, Ars).</p>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">SAFETY (2003-STYLE POPUP)</div>
+              <div class="panel-body small">
+                <p>Old Steam would pop a dialog here. Ours says:</p>
+                <p><b>Do not download the torrent for “fun”.</b> Seeding copyrighted 3rd-party builds = liability. Follow HiddenPalace / researchers' write-ups instead. This tracker hosts <b>metadata only</b>.</p>
+                <button class="steam-btn" id="fakeDlBtn">I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Status bar -->
+    <div class="statusbar">
+      <span><span class="green-dot"></span> Steam servers: <b>Online</b></span>
+      <span>Seeders: <b class="green">healthy</b></span>
+      <span>Catalog: <b id="footCatalog">132 protos</b></span>
+      <span class="foot-right">v1.4-terraleak · <span class="link">not affiliated with Valve</span> · skins: <a class="link" href="https://github.com/MapleAtMorning/OldSteam-Theme" target="_blank" rel="noopener">OldSteam-Theme</a> + <a class="link" href="https://github.com/eyedine2/Classic-Steam-Library" target="_blank" rel="noopener">Classic-Steam-Library</a></span>
+    </div>
+  </div>
+
+  <!-- Update dialog -->
+  <div class="modal hidden" id="updateModal">
+    <div class="modal-box">
+      <div class="modal-head">Steam — Updating News…</div>
+      <div class="modal-body">
+        <p id="updateText">Contacting content servers…</p>
+        <div class="bar big"><div id="updateFill"></div></div>
+        <p class="small" id="updateSub"></p>
+        <button class="steam-btn small" id="updateClose">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fake BSOD / joke close -->
+  <div class="modal hidden" id="closeModal">
+    <div class="modal-box">
+      <div class="modal-head">Steam</div>
+      <div class="modal-body"><p><b>Half-Life 3 confirmed?</b><br><br>No. Still just the Weaponizer.<br><br><span class="small">— TerraLeak Tracker (2003 would never let you close that easy)</span></p>
+      <button class="steam-btn small" id="closeOk">OK</button></div>
+    </div>
+  </div>
+</div>
+
+<script src="tracker.js"></script>
+<script src="live.js"></script>
+<script src="themes.js"></script>
+</body>
+</html>
